@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import avatarImage from "../images/avatar-svgrepo-com.svg";
 import TypeWriter from "../components/Typewriter";
 import Describe from "../components/describe";
+import Skills from "../components/skills";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
         </span>
       </div>
       <Describe />
+      <Skills />
     </div>
   );
 }
