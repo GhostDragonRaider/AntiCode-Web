@@ -1,11 +1,20 @@
 import type { AppProps } from "next/app";
+import { useRouter } from "next/router";
 import "../styles/globals.scss";
+import "../styles/MenuSystem.scss";
+import "../styles/DropdownMenu.scss";
+import "../styles/ContextMenu.scss";
+import "../styles/Calendar.scss";
+import "../styles/UnderConstruction.scss";
 import NavBar from "../components/Navbar";
 
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+  const isProjectPage = router.pathname.startsWith("/projects/");
+
   return (
-    <div>
-      <NavBar />
+    <div className={isProjectPage ? "project-page" : ""}>
+      {!isProjectPage && <NavBar />}
       <Component {...pageProps} />
     </div>
   );

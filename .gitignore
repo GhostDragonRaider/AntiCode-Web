@@ -58,3 +58,7 @@ jspm_packages/
 
 # Yarn Integrity file
 .yarn-integrity
+
+# Project Documentation
+PROJECT_DOCUMENTATION.md
+PROJECT_1_ANALYSIS.md

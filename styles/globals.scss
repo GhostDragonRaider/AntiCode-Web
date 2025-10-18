@@ -1,3 +1,8 @@
+// Import menu system styles
+@import "./MenuSystem.scss";
+@import "./DropdownMenu.scss";
+@import "./ContextMenu.scss";
+
 :root {
   --nav-bar-color: #a855f7;
   --nav-bar-bgcolor: rgba(10, 10, 25, 0.85);
@@ -22,14 +27,26 @@ body {
   background-attachment: fixed;
 
   overflow-x: hidden;
-  padding-top: 2.6rem;
+  padding-top: 70px; /* MenuSystem navbar magassága */
+}
+
+/* Project Layout stílusok */
+.project-layout {
+  /* Háttérkép a body-ból örökölt */
+  min-height: 100vh;
+}
+
+/* Homepage Container stílusok */
+.homepage-container {
+  /* Háttérkép a body-ból örökölt */
+  min-height: 100vh;
 }
 
 .navbar {
   z-index: 999;
   position: fixed;
-  top: 0;
-
+  top: 0rem;
+  margin-top: 0;
   display: flex;
   height: 2.5rem;
   flex-direction: row;
@@ -733,6 +750,125 @@ body {
     }
   }
 
+  .under-construction-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border-radius: 16px;
+    color: #ffffff;
+    text-align: center;
+    border: 2px solid rgba(168, 85, 247, 0.3);
+    box-shadow: 0 8px 25px rgba(168, 85, 247, 0.2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .under-construction-preview::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      45deg,
+      transparent 30%,
+      rgba(168, 85, 247, 0.1) 50%,
+      transparent 70%
+    );
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  .construction-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+    animation: bounce 2s ease-in-out infinite;
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.5));
+  }
+
+  .construction-text {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #a855f7;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 0 10px rgba(168, 85, 247, 0.3);
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 0.8rem;
+    position: relative;
+    z-index: 2;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #a855f7, #4ad8eb);
+    border-radius: 3px;
+    animation: progressAnimation 3s ease-in-out infinite;
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+  }
+
+  .progress-text {
+    font-size: 0.9rem;
+    color: #4ad8eb;
+    font-weight: 600;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 0 5px rgba(74, 216, 235, 0.3);
+  }
+
+  @keyframes bounce {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-5px);
+    }
+    60% {
+      transform: translateY(-3px);
+    }
+  }
+
+  @keyframes progressAnimation {
+    0% {
+      width: 0%;
+    }
+    50% {
+      width: 75%;
+    }
+    100% {
+      width: 90%;
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
   .projects-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -853,5 +989,45 @@ body {
     .projects-grid {
       grid-template-columns: repeat(2, 1fr);
     }
+  }
+}
+
+.project-page {
+  display: flex;
+  flex-direction: column;
+  background: #e1e8ed;
+  background-image: none;
+  min-height: 100vh;
+  padding-top: 0.5rem;
+  margin-top: -2.6rem;
+
+  .navbar {
+    display: none;
+  }
+}
+
+body:has(.project-page) {
+  background: #e1e8ed;
+  background-image: none;
+  padding-top: 0;
+  overflow-x: hidden;
+}
+
+.project-layout {
+  background-color: #e1e8ed;
+  min-height: 100vh;
+}
+
+.project-1-home-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  h1 {
+    color: #333333;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
   }
 }
