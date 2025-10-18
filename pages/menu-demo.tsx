@@ -340,6 +340,7 @@ export default function MenuDemo() {
                 placeholder="Keresés és választás..."
                 searchable={true}
                 label="Kereshető menü"
+                onChange={handleDropdownChange}
               />
             </div>
 
@@ -353,6 +354,12 @@ export default function MenuDemo() {
                 placeholder="Válassz több technológiát..."
                 multiSelect={true}
                 label="Technológia választás"
+                onChange={(value, option) => {
+                  // Multi-select esetén a value egy array
+                  if (Array.isArray(value)) {
+                    handleMultiSelectChange(value, option);
+                  }
+                }}
               />
             </div>
           </div>
@@ -365,8 +372,8 @@ export default function MenuDemo() {
           <ContextMenu onSelectionChange={handleContextMenuChange} />
         </div>
 
-        {/* Mobil Menü Demo */}
-        <div className="demo-section">
+        {/* Mobil Menü Demo - Kikommentezve, mert MobileMenu nincs importálva */}
+        {/* <div className="demo-section">
           <h2 className="demo-title">📱 Mobil Menü</h2>
           <p className="demo-description">
             Touch-friendly mobil menü hamburger gombbal, animált átmenetekkel és
@@ -387,10 +394,10 @@ export default function MenuDemo() {
             isOpen={isMobileMenuOpen}
             onClose={() => setIsMobileMenuOpen(false)}
           />
-        </div>
+        </div> */}
 
-        {/* Breadcrumb Demo */}
-        <div className="demo-section">
+        {/* Breadcrumb Demo - Kikommentezve, mert BreadcrumbMenu nincs importálva */}
+        {/* <div className="demo-section">
           <h2 className="demo-title">🍞 Breadcrumb Navigáció</h2>
           <p className="demo-description">
             Útvonal navigáció a jelenlegi oldal helyzetének megjelenítéséhez.
@@ -399,7 +406,7 @@ export default function MenuDemo() {
           <div className="breadcrumb-demo">
             <BreadcrumbMenu items={breadcrumbItems} currentPath="/menu-demo" />
           </div>
-        </div>
+        </div> */}
 
         {/* Funkciók Összefoglaló */}
         <div className="demo-section">
