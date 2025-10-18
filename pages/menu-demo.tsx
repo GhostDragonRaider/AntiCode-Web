@@ -4,10 +4,7 @@ import DropdownMenu from "../components/DropdownMenu";
 import ContextMenu from "../components/ContextMenu";
 // import MobileMenu, { BreadcrumbMenu } from "../components/MobileMenu";
 
-// Import styles
-import "../styles/MenuSystem.scss";
-import "../styles/DropdownMenu.scss";
-import "../styles/ContextMenu.scss";
+// Styles are imported globally in _app.tsx
 
 export default function MenuDemo() {
   const [selectedDropdownValue, setSelectedDropdownValue] = useState<
