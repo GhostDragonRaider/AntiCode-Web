@@ -66,15 +66,22 @@
           content: "";
           position: absolute;
           top: 15px;
-          left: 50%;
-          width: 100%;
+          left: calc(50% + 15px);
+          width: calc(100% - 30px);
           height: 2px;
           background: rgba(255, 255, 255, 0.2);
-          z-index: 1;
+          z-index: -1;
+          display: none;
         }
 
         &:last-child::after {
           display: none;
+        }
+
+        // Csak akkor jelenjen meg a vonal, ha az adott lépés aktív vagy befejezett
+        &.active::after,
+        &.completed::after {
+          display: block;
         }
 
         .step-number {
@@ -365,7 +372,7 @@
 
       .confirmation-actions {
         display: flex;
-        padding-top:1rem;
+        padding-top: 1rem;
         gap: 1rem;
         justify-content: center;
         flex-wrap: wrap;
@@ -457,8 +464,16 @@
 
       .progress-indicator {
         gap: 1rem;
+        justify-content: center;
+        
 
         .progress-step {
+          &::after {
+            width: calc(100% - 12.5px);
+            left: calc(50% + 12.5px);
+            top: 12.5px;
+          }
+
           .step-number {
             width: 25px;
             height: 25px;
@@ -531,6 +546,30 @@
   .context-menu-container {
     padding: 0.5rem;
     margin: 0.5rem;
+
+    .context-menu-header {
+      .progress-indicator {
+        gap: 0.75rem;
+
+        .progress-step {
+          &::after {
+            width: calc(100% - 10px);
+            left: calc(50% + 10px);
+            top: 10px;
+          }
+
+          .step-number {
+            width: 20px;
+            height: 20px;
+            font-size: 0.7rem;
+          }
+
+          .step-label {
+            font-size: 0.6rem;
+          }
+        }
+      }
+    }
 
     .context-menu-content {
       .specialty-selection {

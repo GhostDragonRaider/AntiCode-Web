@@ -12,6 +12,9 @@ interface MenuItem {
 export default function NavBar() {
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeMobileSubmenu, setActiveMobileSubmenu] = useState<string | null>(
+    null
+  );
 
   const mainMenuItems: MenuItem[] = [
     {
@@ -19,51 +22,6 @@ export default function NavBar() {
       path: "/",
       icon: "🏠",
     },
-    {
-      name: "Projects",
-      path: "/projects",
-      icon: "💼",
-      hasSubmenu: true,
-      submenu: [
-        {
-          name: "Medical Booking System",
-          path: "/projects/project-1",
-          description: "Orvosi időpontfoglaló rendszer",
-          icon: "🏥",
-        },
-        {
-          name: "E-commerce Platform",
-          path: "#",
-          description: "Online áruház",
-          icon: "🛒",
-        },
-        {
-          name: "Learning Management",
-          path: "#",
-          description: "Tanulmányi rendszer",
-          icon: "📚",
-        },
-        {
-          name: "Portfolio Website",
-          path: "#",
-          description: "Portfólió weboldal",
-          icon: "🎨",
-        },
-        {
-          name: "Task Manager",
-          path: "#",
-          description: "Feladatkezelő",
-          icon: "✅",
-        },
-        {
-          name: "Social Media App",
-          path: "#",
-          description: "Közösségi média",
-          icon: "📱",
-        },
-      ],
-    },
-    
     {
       name: "About",
       path: "/about",
@@ -88,6 +46,14 @@ export default function NavBar() {
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const toggleMobileSubmenu = (itemName: string) => {
+    if (activeMobileSubmenu === itemName) {
+      setActiveMobileSubmenu(null);
+    } else {
+      setActiveMobileSubmenu(itemName);
+    }
   };
 
   return (
@@ -185,45 +151,88 @@ export default function NavBar() {
         <div
           className={`mobile-menu-content ${isMobileMenuOpen ? "active" : ""}`}
         >
-          <ul className="mobile-menu-list">
-            {mainMenuItems.map((item, index) => (
-              <li key={index} className="mobile-menu-item">
-                <a
-                  href={item.path}
-                  className="mobile-menu-link"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.icon && <span className="menu-icon">{item.icon}</span>}
-                  <span className="menu-text">{item.name}</span>
-                </a>
+          {/* Close Button */}
+          <button
+            className="mobile-close-button"
+            onClick={() => setIsMobileMenuOpen(false)}
+            aria-label="Close menu"
+          >
+            <span>✕</span>
+          </button>
 
-                {/* Mobile Submenu */}
-                {item.hasSubmenu && item.submenu && (
-                  <ul className="mobile-submenu">
-                    {item.submenu.map((subItem, subIndex) => (
-                      <li key={subIndex} className="mobile-submenu-item">
-                        <a
-                          href={subItem.path}
-                          className="mobile-submenu-link"
-                          onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                          {subItem.icon && (
-                            <span className="submenu-icon">{subItem.icon}</span>
-                          )}
-                          <div className="submenu-text">
-                            <span className="submenu-name">{subItem.name}</span>
-                            <span className="submenu-desc">
-                              {subItem.description}
-                            </span>
-                          </div>
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-            ))}
-          </ul>
+          <div className="mobile-navigation">
+            <ul className="mobile-menu-list">
+              {mainMenuItems.map((item, index) => (
+                <li key={index} className="mobile-menu-item">
+                  {item.hasSubmenu ? (
+                    <button
+                      className="mobile-menu-link"
+                      onClick={() => toggleMobileSubmenu(item.name)}
+                    >
+                      {item.icon && (
+                        <span className="menu-icon">{item.icon}</span>
+                      )}
+                      <span className="menu-text">{item.name}</span>
+                      <span
+                        className={`mobile-submenu-arrow ${
+                          activeMobileSubmenu === item.name ? "active" : ""
+                        }`}
+                      >
+                        ▼
+                      </span>
+                    </button>
+                  ) : (
+                    <a
+                      href={item.path}
+                      className="mobile-menu-link"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {item.icon && (
+                        <span className="menu-icon">{item.icon}</span>
+                      )}
+                      <span className="menu-text">{item.name}</span>
+                      <span className="mobile-submenu-arrow placeholder">
+                        &nbsp;
+                      </span>
+                    </a>
+                  )}
+
+                  {/* Mobile Submenu */}
+                  {item.hasSubmenu && item.submenu && (
+                    <ul
+                      className={`mobile-submenu ${
+                        activeMobileSubmenu === item.name ? "active" : ""
+                      }`}
+                    >
+                      {item.submenu.map((subItem, subIndex) => (
+                        <li key={subIndex} className="mobile-submenu-item">
+                          <a
+                            href={subItem.path}
+                            className="mobile-submenu-link"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                          >
+                            {subItem.icon && (
+                              <span className="submenu-icon">
+                                {subItem.icon}
+                              </span>
+                            )}
+                            <div className="submenu-text">
+                              <span className="submenu-name">
+                                {subItem.name}
+                              </span>
+                              <span className="submenu-desc">
+                                {subItem.description}
+                              </span>
+                            </div>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
 
           <div className="mobile-menu-footer">
             <div className="social-links">

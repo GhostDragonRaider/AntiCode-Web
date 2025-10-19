@@ -110,33 +110,6 @@ export default function Project1() {
   // Mobile menu items
   const mobileMenuItems = [
     { name: "Home", path: "/", icon: "🏠" },
-    {
-      name: "Projects",
-      path: "/projects",
-      icon: "💼",
-      hasSubmenu: true,
-      submenu: [
-        {
-          name: "Medical System",
-          path: "/projects/project-1",
-          icon: "🏥",
-          description: "Orvosi rendszer",
-        },
-        {
-          name: "E-commerce",
-          path: "/projects/project-2",
-          icon: "🛒",
-          description: "Online áruház",
-        },
-        {
-          name: "Learning Platform",
-          path: "/projects/project-3",
-          icon: "📚",
-          description: "Tanulási platform",
-        },
-      ],
-    },
-    { name: "Skills", path: "/skills", icon: "⚡" },
     { name: "About", path: "/about", icon: "👤" },
     { name: "Contact", path: "/contact", icon: "📧" },
   ];
@@ -144,7 +117,6 @@ export default function Project1() {
   // Breadcrumb items
   const breadcrumbItems = [
     { name: "Home", path: "/", icon: "🏠" },
-    { name: "Projects", path: "/projects", icon: "💼" },
     { name: "Project 1", path: "/projects/project-1", icon: "🏥" },
   ];
 
@@ -184,6 +156,32 @@ export default function Project1() {
               left: 0;
               right: 0;
               z-index: 1000;
+            }
+
+            .project-navbar .desktop-menu {
+              display: block !important;
+            }
+
+            .project-navbar .mobile-menu {
+              display: none !important;
+            }
+
+            @media (max-width: 768px) {
+              .project-navbar .desktop-menu {
+                display: block !important;
+              }
+
+              .project-navbar .mobile-menu {
+                display: none !important;
+              }
+
+              .project-navbar .desktop-menu .menu-brand {
+                display: none !important;
+              }
+
+              .project-navbar .desktop-menu .menu-container {
+                justify-content: center;
+              }
             }
 
             .menu-demo-section {

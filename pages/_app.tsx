@@ -1,11 +1,9 @@
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import "../styles/globals.scss";
-import "../styles/MenuSystem.scss";
-import "../styles/DropdownMenu.scss";
-import "../styles/ContextMenu.scss";
 import "../styles/Calendar.scss";
 import "../styles/UnderConstruction.scss";
+import "../styles/MenuSystem.scss";
 import NavBar from "../components/Navbar";
 
 export default function App({ Component, pageProps }: AppProps) {

@@ -24,55 +24,6 @@ export default function MenuSystem({ className = "" }: MenuSystemProps) {
       icon: "🏠",
     },
     {
-      name: "Projects",
-      path: "/projects",
-      icon: "💼",
-      hasSubmenu: true,
-      submenu: [
-        {
-          name: "Medical Booking System",
-          path: "/projects/project-1",
-          description: "Orvosi időpontfoglaló rendszer",
-          icon: "🏥",
-        },
-        {
-          name: "E-commerce Platform",
-          path: "/projects/project-2",
-          description: "Online áruház",
-          icon: "🛒",
-        },
-        {
-          name: "Learning Management",
-          path: "/projects/project-3",
-          description: "Tanulmányi rendszer",
-          icon: "📚",
-        },
-        {
-          name: "Portfolio Website",
-          path: "/projects/project-4",
-          description: "Portfólió weboldal",
-          icon: "🎨",
-        },
-        {
-          name: "Task Manager",
-          path: "/projects/project-5",
-          description: "Feladatkezelő",
-          icon: "✅",
-        },
-        {
-          name: "Social Media App",
-          path: "/projects/project-6",
-          description: "Közösségi média",
-          icon: "📱",
-        },
-      ],
-    },
-    {
-      name: "Skills",
-      path: "/skills",
-      icon: "⚡",
-    },
-    {
       name: "About",
       path: "/about",
       icon: "👤",
